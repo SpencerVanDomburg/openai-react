@@ -1,0 +1,1 @@
+{"examples_context":"In 2017, U.S. life expectancy was 78.6 years.","search_model":"ada","question":"Which puppy is happy?","examples":"[[\"What is human life expectancy in the United States?\",\"78 years.\"]]","stop":"[\"\\n\", \"<|endoftext|>\"]","documents":"[\"Puppy A is happy.\", \"Puppy B is sad.\"]","max_tokens":"5","model":"curie"}
