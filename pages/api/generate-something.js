@@ -11,7 +11,7 @@ const AskQuestion = (props) =>{
   const [completionResult, setCompletionResult] = useState();
 
   const OPEN_AI_URL = "https://api.openai.com";
-  const OPEN_AI_KEY = "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";
+  const OPEN_AI_KEY = "";
   // const OPEN_AI_KEY = process.env.REACT_APP_API_KEY;
 
 const configuration = new Configuration({
