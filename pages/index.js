@@ -1,29 +1,31 @@
 import Head from "next/head";
-import { useState } from "react";
-import AskQuestion from "./api/generate-something";
+import { useState, useEffect } from "react";
+import AskQuestion from "./api/ask-question";
+import GetCompletion from "./api/get-completion";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
-  const [animalResult, setAnimalResult] = useState();
+  const LOCAL_HOST = "http://localhost:9080";
+  const [currentForm, setCurrentForm] = useState("get-completion");
 
-  
+  useEffect(() =>{
+    console.log('form is now: ' + currentForm);
+  },[currentForm]);
 
-  async function onSubmitAnimal(event) {
-    event.preventDefault();
-    const response = await fetch("/api/generate-animal", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ animal: animalInput }),
-    });
-    const data = await response.json();
-    setAnimalResult(data.result);
-    setAnimalInput("");
+  function buttonClick(clickedButton){
+      setCurrentForm(clickedButton);
   }
 
-  
+  function switchModule(){
+      switch(currentForm){
+          case "get-completion":
+            return <GetCompletion url={LOCAL_HOST}/>;
+          case "ask-question":
+            return <AskQuestion url={LOCAL_HOST}/>;
+          default:
+            return <Error/>;
+      }
+  }
 
   return (
     <div>
@@ -31,24 +33,21 @@ export default function Home() {
         <title>OpenAI Quickstart</title>
         <link rel="icon" href="/dog.png" />
       </Head>
+      <div className={styles.container}>
+
+      <div id="banner" className={styles.banner}>
+        <button onClick={(e)=>buttonClick("get-completion")}>Get Completion</button>
+        <button onClick={(e)=>buttonClick("ask-question")}>Ask Question</button>
+        <button disabled>next</button>
+        <button disabled>next</button>
+        <button disabled>next</button>
+        <button disabled>next</button>
+      </div>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
-        <form onSubmit={onSubmitAnimal}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-          />
-          <input type="submit" value="Generate names" />
-        </form>
-        <div className={styles.result}>{animalResult}</div>
-
-       <AskQuestion/>
+        {switchModule()}
       </main>
+      </div>
     </div>
   );
 }
