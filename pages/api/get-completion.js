@@ -11,7 +11,7 @@ import LogProbs from "../input-parameters/log-probs";
 import Stop from "../input-parameters/stop";
 import Engine from "../input-parameters/engine";
 
-const GetCompletion = (props) =>{
+const GetCompletion = ({url, engineList}) =>{
 
   // part of request body
   const [prompt, setPrompt] = useState("some text");
@@ -36,7 +36,7 @@ const handleSubmit = (e) => {
 }
 
 async function call () {
-  await axios.post(props.url + `/v1/engines/${engine}/completions`,
+  await axios.post(url + `/v1/engines/${engine}/completions`,
   {
     "prompt": prompt,
     "max_tokens": maxTokens,
@@ -64,7 +64,7 @@ async function call () {
 
 return (
   <Fragment>
-     <h1>Get completion for your text</h1>
+     <h1>Complete your text input:</h1>
      <div className={styles.result}>{completionResult}</div>
         <form onSubmit={handleSubmit}>
           <Prompt
@@ -102,6 +102,7 @@ return (
           <Engine
             engine={engine}
             setEngine={setEngine}
+            engineList={engineList}
           />
           <input type="submit" value="Get Completion" />
         </form>

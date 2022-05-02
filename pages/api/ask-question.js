@@ -10,8 +10,9 @@ import Examples from "../input-parameters/examples";
 import ExampleContext from "../input-parameters/example-context";
 
 
-const AskQuestion = (props) =>{
+const AskQuestion = ({url, engineList}) =>{
 
+  // parameters in request body
   const [question, setQuestion] = useState("");
   const [documents, setDocuments] = useState();
   const [examples, setExamples] = useState([[]]);
@@ -20,9 +21,9 @@ const AskQuestion = (props) =>{
   const [model, setModel] = useState("curie");
   const [maxTokens, setMaxTokens] = useState(5);
 
+  // result of the request
   const [questionResult, setQuestionResult] = useState();
 
-  
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -30,7 +31,7 @@ const handleSubmit = (e) => {
 }
 
 async function call () {
-  await axios.post(props.url + "/v1/answers",
+  await axios.post(url + "/v1/answers",
   {
     "documents": documents.split(","),
     "question": question,
@@ -70,10 +71,12 @@ return (
           <SearchModel
             searchModel={searchModel}
             setSearchModel={setSearchModel}
+            engineList={engineList}
             />
           <Model
             model={model}
             setModel={setModel}
+            engineList={engineList}
           />
          <Examples
           examples={examples}

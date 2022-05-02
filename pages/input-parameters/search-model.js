@@ -1,4 +1,4 @@
-const SearchModel = ({searchModel, setSearchModel}) => {
+const SearchModel = ({searchModel, setSearchModel, engineList}) => {
 
   return (
     <>
@@ -9,10 +9,9 @@ const SearchModel = ({searchModel, setSearchModel}) => {
             value={searchModel}
             onChange={(e) => setSearchModel(e.target.value)}
           >
-            <option value="ada">ada</option>
-            <option value="babbage">babbage</option>
-            <option value="curie">curie</option>
-            <option value="davinci">davinci</option>
+            {engineList.map(engine =>
+              <option key={engine} value={engine}>{engine}</option>
+              )};
           </select>
     </>
   )

@@ -1,4 +1,4 @@
-const Model = ({model, setModel}) => {
+const Model = ({model, setModel, engineList}) => {
 
   return(
     <>
@@ -9,10 +9,9 @@ const Model = ({model, setModel}) => {
             value={model}
             onChange={(e) => setModel(e.target.value)}
           >
-            <option value="ada">ada</option>
-            <option value="babbage">babbage</option>
-            <option value="curie">curie</option>
-            <option value="davinci">davinci</option>
+            {engineList.map(engine =>
+              <option key={engine} value={engine}>{engine}</option>
+              )};
           </select>
     </>
   )
