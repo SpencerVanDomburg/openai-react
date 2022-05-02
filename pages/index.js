@@ -21,8 +21,6 @@ export default function Home() {
   async function fetchEngineList(){
     await axios.get(LOCAL_HOST + `/v1/engines`)
     .then((response) => {
-      console.log(response);
-      console.log(response.data.body.data);
       const result = response.data.body.data.map(getEngineId);
       setEngineList(result);
     })

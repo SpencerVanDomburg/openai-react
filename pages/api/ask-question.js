@@ -63,30 +63,30 @@ return (
           <Documents
             documents={documents}
             setDocuments={setDocuments}
-            />
+           />
           <Question
             question={question}
             setQuestion={setQuestion}
-            />
+           />
           <SearchModel
             searchModel={searchModel}
             setSearchModel={setSearchModel}
             engineList={engineList}
-            />
+          />
           <Model
             model={model}
             setModel={setModel}
             engineList={engineList}
           />
-         <Examples
-          examples={examples}
-          setExamples={setExamples}
+          <Examples
+            examples={examples}
+            setExamples={setExamples}
           />
           <ExampleContext
             exampleContext={exampleContext}
             setExampleContext={setExampleContext}
-            />
-           <MaxTokens
+          />
+          <MaxTokens
             maxTokens={maxTokens}
             setMaxTokens={setMaxTokens}
           />
