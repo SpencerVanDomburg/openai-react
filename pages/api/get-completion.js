@@ -13,7 +13,7 @@ import Engine from "../input-parameters/engine";
 
 const GetCompletion = ({url, engineList}) =>{
 
-  // part of request body
+  // parameters of the request body
   const [prompt, setPrompt] = useState("some text");
   const [maxTokens, setMaxTokens] = useState(5);
   const [temperature, setTemperature] = useState(1.0);
@@ -26,7 +26,7 @@ const GetCompletion = ({url, engineList}) =>{
   // path variable
   const [engine, setEngine] = useState("curie");
   
-  // result
+  // the result of the request
   const [completionResult, setCompletionResult] = useState();
 
   
@@ -59,8 +59,6 @@ async function call () {
     console.log(error);
   })
 }
-
-
 
 return (
   <Fragment>

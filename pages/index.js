@@ -41,9 +41,15 @@ export default function Home() {
   function switchModule(){
       switch(currentForm){
           case "get-completion":
-            return <GetCompletion url={LOCAL_HOST} engineList={engineList}/>;
+            return <GetCompletion 
+                      url={LOCAL_HOST} 
+                      engineList={engineList}
+                    />;
           case "ask-question":
-            return <AskQuestion url={LOCAL_HOST} engineList={engineList}/>;
+            return <AskQuestion 
+                      url={LOCAL_HOST} 
+                      engineList={engineList}
+                    />;
           default:
             return <Error/>;
       }

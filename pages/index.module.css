@@ -23,6 +23,7 @@
   justify-content: space-between;
   margin: auto;
   margin-top: 2rem; 
+  max-width: 1200px;
 }
 
 .banner button {
@@ -67,28 +68,29 @@
 .main form {
   display: flex;
   flex-direction: column;
-  width: 640px;
+  width: 80%;
   border: 1px solid #10a37f;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1rem;
   margin-bottom: 3rem;
+  max-width: 1200px;
 }
 
 .main select {
-  padding: 12px 16px;
+  padding: 0.5rem 0.75rem;
   border: 1px solid #10a37f;
   border-radius: 4px;
-  margin-bottom: 24px;
+  margin-bottom: 1rem;
 }
 
 .main input[type="text"],
 .main input[type="number"],
 .main input[type="range"],
 .main input[type="checkbox"] {
-  padding: 12px 16px;
+  padding: 0.5rem 0.75rem;
   border: 1px solid #10a37f;
   border-radius: 4px;
-  margin-bottom: 24px;
+  margin-bottom: 1rem;
   accent-color: #10a37f;
 }
 
@@ -115,4 +117,47 @@
   padding: 1rem;
   border-radius: 1rem;
   background-color: #cfcfdf;
+}
+
+.main form .parambox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+.main form .parambox input {
+  width: 90%;
+}
+
+.main form .parambox input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+
+.main form .parambox svg {
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Popup */
+.popupBox {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+}
+
+.insidePopupBox {
+  position: relative;
+  width: 50%;
+  min-height: 300px;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  overflow: auto;
 }
