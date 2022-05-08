@@ -2,11 +2,15 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import AskQuestion from "./api/ask-question";
 import GetCompletion from "./api/get-completion";
+import PerformSearch from "./api/perform-search";
 import styles from "./index.module.css";
 import axios from "axios";
 
 export default function Home() {
   const LOCAL_HOST = "http://localhost:9080";
+  const PERFORM_SEARCH ="perform-search";
+  const ASK_QUESTION = "ask-question";
+  const GET_COMPLETION = "get-completion";
   const [currentForm, setCurrentForm] = useState("get-completion");
   const [engineList, setEngineList] = useState([]);
 
@@ -40,13 +44,18 @@ export default function Home() {
 
   function switchModule(){
       switch(currentForm){
-          case "get-completion":
+          case GET_COMPLETION:
             return <GetCompletion 
                       url={LOCAL_HOST} 
                       engineList={engineList}
                     />;
-          case "ask-question":
+          case ASK_QUESTION:
             return <AskQuestion 
+                      url={LOCAL_HOST} 
+                      engineList={engineList}
+                    />;
+          case PERFORM_SEARCH:
+            return <PerformSearch 
                       url={LOCAL_HOST} 
                       engineList={engineList}
                     />;
@@ -64,9 +73,9 @@ export default function Home() {
       <div className={styles.container}>
 
       <div id="banner" className={styles.banner}>
-        <button onClick={(e)=>buttonClick("get-completion")}>Get Completion</button>
-        <button onClick={(e)=>buttonClick("ask-question")}>Ask Question</button>
-        <button disabled>next</button>
+        <button onClick={(e)=>buttonClick(GET_COMPLETION)}>Get Completion</button>
+        <button onClick={(e)=>buttonClick(ASK_QUESTION)}>Ask Question</button>
+        <button onClick={(e)=>buttonClick(PERFORM_SEARCH)}>Perform Search</button>
         <button disabled>next</button>
         <button disabled>next</button>
         <button disabled>next</button>

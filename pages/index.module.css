@@ -119,6 +119,16 @@
   background-color: #cfcfdf;
 }
 
+.main .result tr {
+  text-align: left;
+}
+
+.main .result td,
+.main .result th {
+  padding: 0.5rem;
+  padding-top: 0rem;
+}
+
 .main form .parambox {
   display: flex;
   flex-direction: row;
