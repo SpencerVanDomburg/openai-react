@@ -14,14 +14,14 @@ import Engine from "../input-parameters/engine";
 const GetCompletion = ({url, engineList}) =>{
 
   // parameters of the request body
-  const [prompt, setPrompt] = useState("some text");
-  const [maxTokens, setMaxTokens] = useState(5);
+  const [prompt, setPrompt]           = useState(typeof window !== 'undefined' ? localStorage.getItem("gc-prompt") : "can you complete this ");
+  const [maxTokens, setMaxTokens]     = useState(5);
   const [temperature, setTemperature] = useState(1.0);
-  const [topP, setTopP] = useState(1);
-  const [n, setN] = useState(1);
-  const [stream, setStream] = useState(false);
-  const [logProbs, setLogProbs] = useState(null);
-  const [stop, setStop] = useState("\n");
+  const [topP, setTopP]               = useState(1.0);
+  const [n, setN]                     = useState(1);
+  const [stream, setStream]           = useState(false);
+  const [logProbs, setLogProbs]       = useState(null);
+  const [stop, setStop]               = useState("\n");
   
   // path variable
   const [engine, setEngine] = useState("curie");
@@ -54,6 +54,7 @@ async function call () {
   })
   .then((response) => {
     setCompletionResult(response.data.body.choices[0].text);
+    localStorage.setItem("gc-prompt", prompt);
   })
   .catch(error =>{
     console.log(error);

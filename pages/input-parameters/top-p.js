@@ -17,16 +17,16 @@ const TopP = ({topP, setTopP}) => {
 
   return (
     <>
-      <label>top_p</label>
+      <label>top_p ({topP})</label>
       <div id="parambox" className={styles.parambox}>
-            <input
-              type="number" 
-              pattern="[0-9]*" 
-              inputmode="numeric"
-              placeholder="Enter top_p as number"
-              value={topP}
-              onChange={(e) => setTopP(e.target.value)}
-            />
+      <input
+            type="range" 
+            step="0.1" 
+            min="0.0"
+            max="1.0"
+            value={topP}
+            onChange={(e) => setTopP(e.target.value)}
+          />
             <FaInfoCircle
               role="button"
               onMouseOver={handleMouseOver}

@@ -16,12 +16,7 @@ const Stream = ({stream, setStream}) => {
   }
 
   function setStreamCheckbox(value){
-    console.log("inside setStreamCheckbox");
-    if (value==="on"){
-      setStream(true); 
-    } else {
-    setStream(false);
-    }
+    setStream(value);
   }
 
   return (
@@ -32,7 +27,7 @@ const Stream = ({stream, setStream}) => {
           type="checkbox"
           id="stream"
           name="stream"
-          onChange={(e)=> setStreamCheckbox(e.target.value)}
+          onChange={(e)=> setStreamCheckbox(e.target.checked)}
           />  
          <FaInfoCircle
             role="button"

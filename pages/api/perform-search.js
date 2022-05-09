@@ -8,11 +8,11 @@ import Engine from "../input-parameters/engine";
 const PerformSearch = ({url, engineList}) =>{
 
   // request body params
-  const [documents, setDocuments] = useState();
-  const [query, setQuery] = useState();
+  const [documents, setDocuments] = useState(typeof window !== 'undefined' ? localStorage.getItem("ps-documents") : "");
+  const [query, setQuery]         = useState(typeof window !== 'undefined' ? localStorage.getItem("ps-query") : "");
 
   // path variable
-  const [engine, setEngine] = useState("curie");
+  const [engine, setEngine] = useState(typeof window !== 'undefined' ? localStorage.getItem("ps-engine") : "curie");
   
   // the result of the request
   const [searchResult, setSearchResult] = useState([]);
@@ -39,7 +39,13 @@ const PerformSearch = ({url, engineList}) =>{
       }
     })
     .then((response) => {
+      response.data.body.data.sort(function(a,b){  
+        return b.score - a.score;
+      });
       setSearchResult(response.data.body.data);
+      localStorage.setItem("ps-documents",documents);
+      localStorage.setItem("ps-query", query);
+      localStorage.setItem("ps-engine", engine);
     })
     .catch(error =>{
       console.log(error);
@@ -48,7 +54,7 @@ const PerformSearch = ({url, engineList}) =>{
 
   return (
     <Fragment>
-       <h1>Perform search</h1>
+       <h1>Perform search: "{query}"</h1>
        <table className={styles.result}>
          <tbody> 
           <tr id="tableHeaders">

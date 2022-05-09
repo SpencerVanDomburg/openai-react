@@ -5,13 +5,15 @@ import GetCompletion from "./api/get-completion";
 import PerformSearch from "./api/perform-search";
 import styles from "./index.module.css";
 import axios from "axios";
+import CreateClassification from "./api/create-classification";
 
 export default function Home() {
   const LOCAL_HOST = "http://localhost:9080";
   const PERFORM_SEARCH ="perform-search";
   const ASK_QUESTION = "ask-question";
   const GET_COMPLETION = "get-completion";
-  const [currentForm, setCurrentForm] = useState("get-completion");
+  const CREATE_CLASSIFICATION = "create-classification";
+  const [currentForm, setCurrentForm] = useState(typeof window !== 'undefined' ? localStorage.getItem("currentForm") :PERFORM_SEARCH);
   const [engineList, setEngineList] = useState([]);
 
   useEffect(()=>{
@@ -39,6 +41,7 @@ export default function Home() {
   }
 
   function buttonClick(clickedButton){
+      localStorage.setItem("currentForm", clickedButton);
       setCurrentForm(clickedButton);
   }
 
@@ -59,6 +62,11 @@ export default function Home() {
                       url={LOCAL_HOST} 
                       engineList={engineList}
                     />;
+          case CREATE_CLASSIFICATION:
+            return <CreateClassification 
+                      url={LOCAL_HOST} 
+                      engineList={engineList}
+                    />;
           default:
             return <Error/>;
       }
@@ -76,7 +84,7 @@ export default function Home() {
         <button onClick={(e)=>buttonClick(GET_COMPLETION)}>Get Completion</button>
         <button onClick={(e)=>buttonClick(ASK_QUESTION)}>Ask Question</button>
         <button onClick={(e)=>buttonClick(PERFORM_SEARCH)}>Perform Search</button>
-        <button disabled>next</button>
+        <button onClick={(e)=>buttonClick(CREATE_CLASSIFICATION)}>Classification</button>
         <button disabled>next</button>
         <button disabled>next</button>
       </div>
