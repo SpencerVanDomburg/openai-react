@@ -3,15 +3,18 @@ import { useState, useEffect } from "react";
 import AskQuestion from "./api/ask-question";
 import GetCompletion from "./api/get-completion";
 import PerformSearch from "./api/perform-search";
+import CreateClassification from "./api/create-classification";
+import CreateEdit from "./api/create-edit";
 import styles from "./index.module.css";
 import axios from "axios";
-import CreateClassification from "./api/create-classification";
+
 
 export default function Home() {
   const LOCAL_HOST = "http://localhost:9080";
   const PERFORM_SEARCH ="perform-search";
   const ASK_QUESTION = "ask-question";
   const GET_COMPLETION = "get-completion";
+  const CREATE_EDIT = "create-edit";
   const CREATE_CLASSIFICATION = "create-classification";
   const [currentForm, setCurrentForm] = useState(typeof window !== 'undefined' ? localStorage.getItem("currentForm") :PERFORM_SEARCH);
   const [engineList, setEngineList] = useState([]);
@@ -67,6 +70,11 @@ export default function Home() {
                       url={LOCAL_HOST} 
                       engineList={engineList}
                     />;
+          case CREATE_EDIT:
+            return <CreateEdit 
+                      url={LOCAL_HOST} 
+                      engineList={engineList}
+                    />;
           default:
             return <Error/>;
       }
@@ -85,7 +93,7 @@ export default function Home() {
         <button onClick={(e)=>buttonClick(ASK_QUESTION)}>Ask Question</button>
         <button onClick={(e)=>buttonClick(PERFORM_SEARCH)}>Perform Search</button>
         <button onClick={(e)=>buttonClick(CREATE_CLASSIFICATION)}>Classification</button>
-        <button disabled>next</button>
+        <button onClick={(e)=>buttonClick(CREATE_EDIT)}>Create Edit</button>
         <button disabled>next</button>
       </div>
 

@@ -20,9 +20,11 @@ const LogProbs = ({logProbs, setLogProbs}) => {
       <label>log_probs</label>
       <div id="parambox" className={styles.parambox}>
           <input
-            id="log_probs"
-            type="text"
-            placeholder="Enter logProbs"
+            id="number"
+            type="number"
+            pattern="[0-9]"
+            inputMode="numeric"
+            placeholder="Enter logProbs as number"
             value={logProbs}
             onChange={(e) => setLogProbs(e.target.value)}
           />
