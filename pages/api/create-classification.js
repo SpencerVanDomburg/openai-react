@@ -6,15 +6,16 @@ import Model from "../input-parameters/model";
 import Examples from "../input-parameters/examples";
 import Query from "../input-parameters/query";
 import Labels from "../input-parameters/labels";
+import {getFromStorageOrDefault} from '../storageService';
 
 const CreateClassification = ({url, engineList}) =>{
 
   // parameters in request body
-  const [examples, setExamples] = useState(typeof window !== 'undefined' ? localStorage.getItem("cc-examples") : [[]]);
-  const [labels, setLabels] = useState(typeof window !== 'undefined' ? localStorage.getItem("cc-labels") : []);
-  const [searchModel, setSearchModel] = useState("ada");
-  const [model, setModel] = useState("curie");
-  const [query, setQuery] = useState(typeof window !== 'undefined' ? localStorage.getItem("cc-query") : "");
+  const [examples, setExamples]       = useState(getFromStorageOrDefault("cc-examples"      , [[]]));
+  const [labels, setLabels]           = useState(getFromStorageOrDefault("cc-labels"        , []));
+  const [searchModel, setSearchModel] = useState(getFromStorageOrDefault("cc-search-model"  ,"ada"));
+  const [model, setModel]             = useState(getFromStorageOrDefault("cc-model"         ,"curie"));
+  const [query, setQuery]             = useState(getFromStorageOrDefault("cc-query"         , ""));
 
   // result of the request
   const [classificationResult, setClassificationResult] = useState();
@@ -43,6 +44,8 @@ async function call () {
     localStorage.setItem("cc-examples", examples);
     localStorage.setItem("cc-labels", labels);
     localStorage.setItem("cc-query", query);
+    localStorage.setItem("cc-search-model", searchModel);
+    localStorage.setItem("cc-model", model);
   })
   .catch(error =>{
     console.log(error);

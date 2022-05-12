@@ -24,6 +24,7 @@ const Question = ({question, setQuestion}) => {
             placeholder="Enter question"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
+            required
           />
     
       <FaInfoCircle

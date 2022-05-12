@@ -4,15 +4,16 @@ import axios from "axios";
 import Documents from "../input-parameters/documents";
 import Query from "../input-parameters/query";
 import Engine from "../input-parameters/engine";
+import {getFromStorageOrDefault} from '../storageService';
 
 const PerformSearch = ({url, engineList}) =>{
 
   // request body params
-  const [documents, setDocuments] = useState(typeof window !== 'undefined' ? localStorage.getItem("ps-documents") : "");
-  const [query, setQuery]         = useState(typeof window !== 'undefined' ? localStorage.getItem("ps-query") : "");
+  const [documents, setDocuments] = useState(getFromStorageOrDefault("ps-documents", ""));
+  const [query, setQuery]         = useState(getFromStorageOrDefault("ps-query", ""));
 
   // path variable
-  const [engine, setEngine] = useState(typeof window !== 'undefined' ? localStorage.getItem("ps-engine") : "curie");
+  const [engine, setEngine] = useState(getFromStorageOrDefault("ps-engine", "curie"));
   
   // the result of the request
   const [searchResult, setSearchResult] = useState([]);
@@ -64,15 +65,9 @@ const PerformSearch = ({url, engineList}) =>{
           </tr>
           {searchResult.map(result =>
           <tr key={result.document} value={result.document}>
-            <td>
-              {result.document} 
-            </td>
-            <td>
-              {documents.split(",")[result.document]}  
-            </td>
-            <td>
-              {result.score}
-            </td>
+            <td>{result.document} </td>
+            <td>{documents.split(",")[result.document]}</td>
+            <td>{result.score}</td>
           </tr>
           )}
           </tbody>

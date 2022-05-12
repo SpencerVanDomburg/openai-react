@@ -8,22 +8,21 @@ import SearchModel from "../input-parameters/search-model";
 import Model from "../input-parameters/model";
 import Examples from "../input-parameters/examples";
 import ExampleContext from "../input-parameters/example-context";
-
+import {getFromStorageOrDefault} from '../storageService';
 
 const AskQuestion = ({url, engineList}) =>{
 
   // parameters in request body
-  const [question, setQuestion] = useState("");
-  const [documents, setDocuments] = useState();
-  const [examples, setExamples] = useState([[]]);
-  const [exampleContext, setExampleContext] = useState("");
-  const [searchModel, setSearchModel] = useState("ada");
-  const [model, setModel] = useState("curie");
-  const [maxTokens, setMaxTokens] = useState(5);
+  const [question, setQuestion]             = useState(getFromStorageOrDefault("aq-question", ""));
+  const [documents, setDocuments]           = useState();
+  const [examples, setExamples]             = useState([[]]);
+  const [exampleContext, setExampleContext] = useState(getFromStorageOrDefault("aq-example-context",""));
+  const [searchModel, setSearchModel]       = useState(getFromStorageOrDefault("aq-search-model","curie"));
+  const [model, setModel]                   = useState(getFromStorageOrDefault("aq-model","curie"));
+  const [maxTokens, setMaxTokens]           = useState(5);
 
   // result of the request
   const [questionResult, setQuestionResult] = useState();
-
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -33,7 +32,7 @@ const handleSubmit = (e) => {
 async function call () {
   await axios.post(url + "/v1/answers",
   {
-    "documents": documents.split(","),
+    "documents": documents.split(","), 
     "question": question,
     "search_model": searchModel,
     "model": model,
@@ -49,6 +48,10 @@ async function call () {
   })
   .then((response) => {
     setQuestionResult(response.data.body.answers[0]);
+    localStorage.setItem("aq-question", question);
+    localStorage.setItem("aq-search-model", searchModel);
+    localStorage.setItem("aq-model", model);
+    localStorage.setItem("aq-example-context", exampleContext);
   })
   .catch(error =>{
     console.log(error);

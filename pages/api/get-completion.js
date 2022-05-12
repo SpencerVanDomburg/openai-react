@@ -10,11 +10,12 @@ import Stream from "../input-parameters/stream";
 import LogProbs from "../input-parameters/log-probs";
 import Stop from "../input-parameters/stop";
 import Engine from "../input-parameters/engine";
+import {getFromStorageOrDefault} from '../storageService';
 
 const GetCompletion = ({url, engineList}) =>{
 
   // parameters of the request body
-  const [prompt, setPrompt]           = useState(typeof window !== 'undefined' ? localStorage.getItem("gc-prompt") : "can you complete this ");
+  const [prompt, setPrompt]           = useState(getFromStorageOrDefault("gc-prompt", "can you complete this "));
   const [maxTokens, setMaxTokens]     = useState(5);
   const [temperature, setTemperature] = useState(1.0);
   const [topP, setTopP]               = useState(1.0);
@@ -24,7 +25,7 @@ const GetCompletion = ({url, engineList}) =>{
   const [stop, setStop]               = useState("\n");
   
   // path variable
-  const [engine, setEngine] = useState("curie");
+  const [engine, setEngine] = useState(getFromStorageOrDefault("gc-engine","curie"));
   
   // the result of the request
   const [completionResult, setCompletionResult] = useState();
@@ -55,6 +56,7 @@ async function call () {
   .then((response) => {
     setCompletionResult(response.data.body.choices[0].text);
     localStorage.setItem("gc-prompt", prompt);
+    localStorage.setItem("gc-engine", engine);
   })
   .catch(error =>{
     console.log(error);

@@ -25,6 +25,7 @@ const Documents = ({documents, setDocuments}) => {
             placeholder="Enter documents as array"
             value={documents}
             onChange={(e) => setDocuments(e.target.value)}
+            required // in open ai api it's either "documents" or "file"
           />
           <FaInfoCircle
             role="button"
