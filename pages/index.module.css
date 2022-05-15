@@ -146,6 +146,17 @@
   
 }
 
+.main form .parambox ul {
+  border: dotted 1px #10a37f;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  width: 80%;
+}
+
+.main form .parambox ul li {
+  margin-top: 1rem;
+}
+
 .main form .parambox input {
   width: 90%;
 }
@@ -158,6 +169,23 @@
 .main form .parambox svg {
   padding: 0.5rem 0.75rem;
   margin-bottom: 1rem;
+}
+
+.examplesBox {
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-start;
+}
+
+.examplesBox svg {
+  margin-left: 0.75rem;
+  height: 25px;
+  width: 25px;
+}
+
+.examplesBox svg:hover {
+  cursor: pointer;
+  opacity: 80%;
 }
 
 /* Popup */

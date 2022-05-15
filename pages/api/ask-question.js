@@ -12,24 +12,52 @@ import {getFromStorageOrDefault} from '../storageService';
 
 const AskQuestion = ({url, engineList}) =>{
 
-  // parameters in request body
-  const [question, setQuestion]             = useState(getFromStorageOrDefault("aq-question", ""));
+  // parameters in request body              
+  const [question, setQuestion]             = useState(getFromStorageOrDefault("aq-question"        , ""));
   const [documents, setDocuments]           = useState();
-  const [examples, setExamples]             = useState([[]]);
-  const [exampleContext, setExampleContext] = useState(getFromStorageOrDefault("aq-example-context",""));
-  const [searchModel, setSearchModel]       = useState(getFromStorageOrDefault("aq-search-model","curie"));
-  const [model, setModel]                   = useState(getFromStorageOrDefault("aq-model","curie"));
+  const [examples, setExamples]             = useState([]);
+  const [exampleContext, setExampleContext] = useState(getFromStorageOrDefault("aq-example-context" ,""));
+  const [searchModel, setSearchModel]       = useState(getFromStorageOrDefault("aq-search-model"    ,"curie"));
+  const [model, setModel]                   = useState(getFromStorageOrDefault("aq-model"           ,"curie"));
   const [maxTokens, setMaxTokens]           = useState(5);
 
   // result of the request
   const [questionResult, setQuestionResult] = useState();
+
+  // array for the list of examples to put in the request
+  const [exampleContent, setExampleContent] = useState([]);
 
 const handleSubmit = (e) => {
   e.preventDefault();
   call();
 }
 
+function getExampleContent(){
+  console.log("getExampleContent");
+  const newArray = [];
+  for (let i = 0; i< exampleContent.length; i++){
+    newArray.push(exampleContent[i].split(','));
+    console.log("added: "+ newArray[i]);
+  }
+  console.log("returning: " + newArray);
+  return newArray;
+}
+
+
 async function call () {
+
+  // const str = 'Test, test';
+  // const str2 = 'Test2, test2';
+  // const array = [];
+  // const words = str.split(',');
+  // const words2 = str2.split(',');
+  
+  // array.push(words);
+  // array.push(words2);
+  
+  // console.log(array);
+
+
   await axios.post(url + "/v1/answers",
   {
     "documents": documents.split(","), 
@@ -37,7 +65,7 @@ async function call () {
     "search_model": searchModel,
     "model": model,
     "examples_context": exampleContext,
-    "examples": [examples.split(",")],    
+    "examples": getExampleContent(),    
     "max_tokens": maxTokens,
     "stop": ["\n", "<|endoftext|>"]
   },
@@ -84,6 +112,8 @@ return (
           <Examples
             examples={examples}
             setExamples={setExamples}            
+            exampleContent={exampleContent}
+            setExampleContent={setExampleContent}
           />
           <ExampleContext
             exampleContext={exampleContext}
