@@ -34,7 +34,20 @@ original project).
 3. The hovering over the info icon is still a bit buggy in my experience, I hope to improve this as well
 
 ## Screenshots
+Get Completion:
 ![Get Completion](https://user-images.githubusercontent.com/61516960/169072769-3b9d3f14-2342-4a7c-a6e0-a591581698e0.png)
+
+Ask Question:
+![Ask Question](https://user-images.githubusercontent.com/61516960/169072265-9dfee977-1bf1-4404-a502-b3df42e82f65.png)
+
+Perform Search:
+![Perform Search](https://user-images.githubusercontent.com/61516960/169072390-6dc2f9b8-bd18-437d-b674-2567c4cb9fbc.png)
+
+Classification:
+![Classification](https://user-images.githubusercontent.com/61516960/169072557-feeaf416-2fb0-4190-bde2-07a42d2c654f.png)
+
+Create Edit:
+![Create Edit](https://user-images.githubusercontent.com/61516960/169072670-79daa55e-ac8b-4e1b-894b-a360a9c133f9.png)
 
 https://github.com/SpencerVanDomburg/openai-react/issues/1#issue-1240097647
 
