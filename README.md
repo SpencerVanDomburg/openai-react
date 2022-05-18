@@ -34,7 +34,7 @@ original project).
 3. The hovering over the info icon is still a bit buggy in my experience, I hope to improve this as well
 
 ## Screenshots
-(Text in the gray area is the resposne from Open AI and every button represents 1 endpoint, the "next" is a placeholder that doesn't do anything at the moment, only 5 calls are possible now).
+(Text in the gray area is the response from Open AI and every button represents 1 endpoint, the "next" is a placeholder that doesn't do anything at the moment, only 5 calls are possible now).
 
 Get Completion:
 ![Get Completion](https://user-images.githubusercontent.com/61516960/169072769-3b9d3f14-2342-4a7c-a6e0-a591581698e0.png)
