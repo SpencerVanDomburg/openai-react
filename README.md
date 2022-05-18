@@ -1,3 +1,38 @@
+# Spencer van Domburg - Open AI project (React JS)
+
+I made this project to practice my React skills and made it public so everyone can clone it and use it playing around with the Open AI API.
+At first I cloned the API Quickstart repository from Open AI itself but you'll see that I basically removed everything and started from
+scratch.
+
+The main thing that is different is that there is a Java Springboot backend that functions as a proxy. It also stores the needed
+API key. You can follow below steps to use my project(s). Any feedback is more than welcome! (At the very bottom I left the readme of the
+original project).
+
+## Setup
+
+0. Requirements: Java, Node JS, Open AI account
+
+1. Clone the Java backend project: https://github.com/SpencerVanDomburg/openai
+
+2. Create "application-local.properties" file in src/main/resources folder and add your API key from your Open AI account in the openai.api.key property
+
+3. Edit configuration to set Environmental variables to "SPRING_PROFILES_ACTIVE=local".
+
+4. You can run the project, it should use the 'local' settings and the local properties should be in the git ignore
+
+5. Clone the React project: https://github.com/SpencerVanDomburg/openai-react
+
+6. You probably need to do "npm install" after that you can run "npm run dev" to start the app
+
+## Additional remarks
+
+1. In the React project I call the engine list endpoint to populate the engine dropdown in several of the pages, not every engine is useable in every
+   request it seems.
+
+2. Not all parameters for the requests are stored in localStorage as I ran into some difficulties, I do hope I can fix this later on
+
+3. The hovering over the info icon is still a bit buggy in my experience, I hope to improve this as well
+
 # OpenAI API Quickstart - Node.js example app
 
 This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://beta.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
