@@ -34,6 +34,8 @@ original project).
 3. The hovering over the info icon is still a bit buggy in my experience, I hope to improve this as well
 
 ## Screenshots
+![Get Completion](https://user-images.githubusercontent.com/61516960/169072769-3b9d3f14-2342-4a7c-a6e0-a591581698e0.png)
+
 https://github.com/SpencerVanDomburg/openai-react/issues/1#issue-1240097647
 
 # OpenAI API Quickstart - Node.js example app
