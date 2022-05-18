@@ -22,14 +22,12 @@ function updateLine (id, content){
   setExampleContent(newArray);
 }
 
-
-
   return (
     <li key={id}>
           <input
-            id="examples"
+            id="example"
             type="text"
-            placeholder="Use a comma (,) to seperate question from answer"
+            placeholder="Use a comma to seperate question from answer"
             value={line}
             onChange={(e) => setLine(e.target.value)}
             required

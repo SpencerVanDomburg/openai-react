@@ -22,7 +22,7 @@ const MaxTokens = ({maxTokens, setMaxTokens}) => {
         <input
             type="number" 
             pattern="[0-9]*" 
-            inputmode="numeric"
+            inputMode='numeric'
             placeholder="Enter max number of tokens"
             value={maxTokens}
             onChange={(e) => setMaxTokens(e.target.value)}

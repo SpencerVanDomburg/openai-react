@@ -8,7 +8,6 @@ const Examples = ({examples, setExamples, exampleContent, setExampleContent}) =>
 
   const [showPopup, setShowPopup] = useState(false);
   const [nextId, setNextId] = useState(1);
-
   
   useEffect(()=>{
     handlePlus();
@@ -42,8 +41,7 @@ const Examples = ({examples, setExamples, exampleContent, setExampleContent}) =>
   }
 
   return(
-    <>
-     
+    <>  
      <div className={styles.examplesBox}>
      <label>Examples</label>
      <FaPlusSquare
@@ -79,8 +77,6 @@ const Examples = ({examples, setExamples, exampleContent, setExampleContent}) =>
       </p>
       <p>https://beta.openai.com/docs/api-reference/answers/create#answers/create-examples</p>
     </>  }/>}
-
-    
     </>
   )
 }

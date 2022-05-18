@@ -7,11 +7,12 @@ import Examples from "../input-parameters/examples";
 import Query from "../input-parameters/query";
 import Labels from "../input-parameters/labels";
 import {getFromStorageOrDefault} from '../storageService';
+import {getExampleContent} from '../utilService';
 
 const CreateClassification = ({url, engineList}) =>{
 
   // parameters in request body
-  const [examples, setExamples]       = useState(getFromStorageOrDefault("cc-examples"      , [[]]));
+  const [examples, setExamples]       = useState([]);
   const [labels, setLabels]           = useState(getFromStorageOrDefault("cc-labels"        , []));
   const [searchModel, setSearchModel] = useState(getFromStorageOrDefault("cc-search-model"  ,"ada"));
   const [model, setModel]             = useState(getFromStorageOrDefault("cc-model"         ,"curie"));
@@ -19,6 +20,9 @@ const CreateClassification = ({url, engineList}) =>{
 
   // result of the request
   const [classificationResult, setClassificationResult] = useState();
+
+// array for the list of examples to put in the request
+const [exampleContent, setExampleContent] = useState([]);
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -28,7 +32,7 @@ const handleSubmit = (e) => {
 async function call () {
   await axios.post(url + "/v1/classifications",
   {
-    "examples": [examples.split(",")],       
+    "examples": getExampleContent(exampleContent),       
     "labels" : labels.split(","),
     "query" : query,
     "search_model": searchModel,
@@ -41,7 +45,6 @@ async function call () {
   })
   .then((response) => {
     setClassificationResult(response.data.body.label);
-    localStorage.setItem("cc-examples", examples);
     localStorage.setItem("cc-labels", labels);
     localStorage.setItem("cc-query", query);
     localStorage.setItem("cc-search-model", searchModel);
@@ -59,6 +62,8 @@ return (
           <Examples
             examples={examples}
             setExamples={setExamples}
+            exampleContent={exampleContent}
+            setExampleContent={setExampleContent}
            />
           <Labels
             labels={labels}

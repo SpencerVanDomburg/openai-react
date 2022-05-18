@@ -9,6 +9,7 @@ import Model from "../input-parameters/model";
 import Examples from "../input-parameters/examples";
 import ExampleContext from "../input-parameters/example-context";
 import {getFromStorageOrDefault} from '../storageService';
+import { getExampleContent } from "../utilService";
 
 const AskQuestion = ({url, engineList}) =>{
 
@@ -32,31 +33,7 @@ const handleSubmit = (e) => {
   call();
 }
 
-function getExampleContent(){
-  console.log("getExampleContent");
-  const newArray = [];
-  for (let i = 0; i< exampleContent.length; i++){
-    newArray.push(exampleContent[i].split(','));
-    console.log("added: "+ newArray[i]);
-  }
-  console.log("returning: " + newArray);
-  return newArray;
-}
-
-
 async function call () {
-
-  // const str = 'Test, test';
-  // const str2 = 'Test2, test2';
-  // const array = [];
-  // const words = str.split(',');
-  // const words2 = str2.split(',');
-  
-  // array.push(words);
-  // array.push(words2);
-  
-  // console.log(array);
-
 
   await axios.post(url + "/v1/answers",
   {
@@ -65,7 +42,7 @@ async function call () {
     "search_model": searchModel,
     "model": model,
     "examples_context": exampleContext,
-    "examples": getExampleContent(),    
+    "examples": getExampleContent(exampleContent),    
     "max_tokens": maxTokens,
     "stop": ["\n", "<|endoftext|>"]
   },
