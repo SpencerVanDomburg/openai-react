@@ -38,7 +38,7 @@ Get Completion:
 ![Get Completion](https://user-images.githubusercontent.com/61516960/169072769-3b9d3f14-2342-4a7c-a6e0-a591581698e0.png)
 
 Ask Question:
-![Ask Question](https://user-images.githubusercontent.com/61516960/169072265-9dfee977-1bf1-4404-a502-b3df42e82f65.png)
+![Ask Question](https://user-images.githubusercontent.com/61516960/169074912-18ee33c5-fbe5-4b69-a582-3b20a5fd9599.png)
 
 Perform Search:
 ![Perform Search](https://user-images.githubusercontent.com/61516960/169072390-6dc2f9b8-bd18-437d-b674-2567c4cb9fbc.png)
