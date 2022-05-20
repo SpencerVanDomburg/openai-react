@@ -20,7 +20,7 @@ export default function Home() {
   const GET_COMPLETION = "get-completion";
   const CREATE_EDIT = "create-edit";
   const CREATE_CLASSIFICATION = "create-classification";
-  const [currentForm, setCurrentForm] = useState(getFromStorageOrDefault("currentForm", GET_COMPLETION));
+  const [currentForm, setCurrentForm] = useState(GET_COMPLETION);
   const [engineList, setEngineList] = useState([]);
 
   useEffect(()=>{
