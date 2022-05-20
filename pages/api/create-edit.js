@@ -6,15 +6,15 @@ import Instruction from "../input-parameters/instruction";
 import Engine from "../input-parameters/engine";
 import Temperature from "../input-parameters/temperature";
 import TopP from "../input-parameters/top-p";
-import {getFromStorageOrDefault} from '../storageService';
+import {getFloatFromStorageOrDefault, getFromStorageOrDefault} from '../storageService';
 
 const CreateEdit = ({url, engineList}) =>{
 
   // parameters in request body
-  const [input, setInput]             = useState(getFromStorageOrDefault("ce-input"         , ""));
-  const [instruction, setInstruction] = useState(getFromStorageOrDefault("ce-instruction"   , ""));
-  const [temperature, setTemperature] = useState(1.0);
-  const [topP, setTopP]               = useState(1.0);
+  const [input, setInput]             = useState(getFromStorageOrDefault(     "ce-input"         , ""));
+  const [instruction, setInstruction] = useState(getFromStorageOrDefault(     "ce-instruction"   , ""));
+  const [temperature, setTemperature] = useState(getFloatFromStorageOrDefault("ce-temperature"   , 1.0));
+  const [topP, setTopP]               = useState(getFloatFromStorageOrDefault("ce-top-p"         , 1.0));
 
  // path variable
  const [engine, setEngine]            = useState(getFromStorageOrDefault("ce-engine"        , "text-davinci-edit-001"));
@@ -42,6 +42,8 @@ async function call () {
     setEditResult(response.data.body.choices[0].text);
     localStorage.setItem("ce-input", input);
     localStorage.setItem("ce-instruction", instruction);
+    localStorage.setItem("ce-temperature", temperature);
+    localStorage.setItem("ce-top-p", 1.0);
     localStorage.setItem("ce-engine", engine);
   })
   .catch(error =>{

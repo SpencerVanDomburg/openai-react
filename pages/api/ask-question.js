@@ -8,19 +8,19 @@ import SearchModel from "../input-parameters/search-model";
 import Model from "../input-parameters/model";
 import Examples from "../input-parameters/examples";
 import ExampleContext from "../input-parameters/example-context";
-import {getFromStorageOrDefault} from '../storageService';
+import {getFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
 import { getExampleContent } from "../utilService";
 
 const AskQuestion = ({url, engineList}) =>{
 
   // parameters in request body              
   const [question, setQuestion]             = useState(getFromStorageOrDefault("aq-question"        , ""));
-  const [documents, setDocuments]           = useState(getFromStorageOrDefault("aq-documents", ""));
+  const [documents, setDocuments]           = useState(getFromStorageOrDefault("aq-documents"       , ""));
   const [examples, setExamples]             = useState([]);
   const [exampleContext, setExampleContext] = useState(getFromStorageOrDefault("aq-example-context" ,""));
   const [searchModel, setSearchModel]       = useState(getFromStorageOrDefault("aq-search-model"    ,"curie"));
   const [model, setModel]                   = useState(getFromStorageOrDefault("aq-model"           ,"curie"));
-  const [maxTokens, setMaxTokens]           = useState(5);
+  const [maxTokens, setMaxTokens]           = useState(getIntFromStorageOrDefault("aq-max-tokens", 5));
 
   // result of the request
   const [questionResult, setQuestionResult] = useState();
@@ -58,6 +58,7 @@ async function call () {
     localStorage.setItem("aq-search-model", searchModel);
     localStorage.setItem("aq-model", model);
     localStorage.setItem("aq-example-context", exampleContext);
+    localStorage.setItem("aq-max-tokens", maxTokens);
   })
   .catch(error =>{
     console.log(error);

@@ -22,7 +22,7 @@ return (
           <input
             type="number" 
             pattern="[0-9]*" 
-            inputmode="numeric"
+            inputMode="numeric"
             placeholder="Enter n as number"
             value={n}
             onChange={(e) => setN(e.target.value)}

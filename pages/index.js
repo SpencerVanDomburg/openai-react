@@ -10,6 +10,7 @@ import axios from "axios";
 import {FaQuestionCircle, FaSearch, FaEdit, FaList, FaCodiepie} from 'react-icons/fa';
 import {BsCodeSlash} from 'react-icons/bs';
 import { getActiveButtonStyle } from "./utilService";
+import { getFromStorageOrDefault } from "./storageService";
 
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
   const GET_COMPLETION = "get-completion";
   const CREATE_EDIT = "create-edit";
   const CREATE_CLASSIFICATION = "create-classification";
-  const [currentForm, setCurrentForm] = useState(typeof window !== 'undefined' ? localStorage.getItem("currentForm") :PERFORM_SEARCH);
+  const [currentForm, setCurrentForm] = useState(getFromStorageOrDefault("currentForm", GET_COMPLETION));
   const [engineList, setEngineList] = useState([]);
 
   useEffect(()=>{
@@ -90,7 +91,6 @@ export default function Home() {
         <link rel="icon" href="/dog.png" />
       </Head>
       <div className={styles.container}>
-
         <div id="banner" className={styles.banner}>
 
           <button 
@@ -132,6 +132,7 @@ export default function Home() {
               <FaEdit/>
               <div>Create Edit</div>
           </button>
+
           <button disabled className={styles.buttonBox}>
             <BsCodeSlash/>
             <div>next</div>

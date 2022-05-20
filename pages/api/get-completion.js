@@ -10,18 +10,18 @@ import Stream from "../input-parameters/stream";
 import LogProbs from "../input-parameters/log-probs";
 import Stop from "../input-parameters/stop";
 import Engine from "../input-parameters/engine";
-import {getFromStorageOrDefault} from '../storageService';
+import {getFloatFromStorageOrDefault, getFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
 
 const GetCompletion = ({url, engineList}) =>{
 
   // parameters of the request body
-  const [prompt, setPrompt]           = useState(getFromStorageOrDefault("gc-prompt", "can you complete this "));
-  const [maxTokens, setMaxTokens]     = useState(5);
-  const [temperature, setTemperature] = useState(1.0);
-  const [topP, setTopP]               = useState(1.0);
-  const [n, setN]                     = useState(1);
+  const [prompt, setPrompt]           = useState(getFromStorageOrDefault(     "gc-prompt"       , "can you complete this "));
+  const [maxTokens, setMaxTokens]     = useState(getIntFromStorageOrDefault(  "gc-max-tokens"   ,5));
+  const [temperature, setTemperature] = useState(getFloatFromStorageOrDefault("gc-temperature"  ,1.0));
+  const [topP, setTopP]               = useState(getFloatFromStorageOrDefault("gc-top-p"        ,1.0));
+  const [n, setN]                     = useState(getIntFromStorageOrDefault(  "gc-n"            ,1));
   const [stream, setStream]           = useState(false);
-  const [logProbs, setLogProbs]       = useState(null);
+  const [logProbs, setLogProbs]       = useState(getIntFromStorageOrDefault(  "gc-log-probs"    ,1));
   const [stop, setStop]               = useState("\n");
   
   // path variable
@@ -56,6 +56,11 @@ async function call () {
   .then((response) => {
     setCompletionResult(response.data.body.choices[0].text);
     localStorage.setItem("gc-prompt", prompt);
+    localStorage.setItem("gc-max-tokens", maxTokens);
+    localStorage.setItem("gc-temperature", temperature);
+    localStorage.setItem("gc-top-p", topP);
+    localStorage.setItem("gc-n", n);
+    localStorage.setItem("gc-log-probs", logProbs);
     localStorage.setItem("gc-engine", engine);
   })
   .catch(error =>{
