@@ -9,6 +9,7 @@ import styles from "./index.module.css";
 import axios from "axios";
 import {FaQuestionCircle, FaSearch, FaEdit, FaList, FaCodiepie} from 'react-icons/fa';
 import {BsCodeSlash} from 'react-icons/bs';
+import { getActiveButtonStyle } from "./utilService";
 
 
 export default function Home() {
@@ -90,36 +91,56 @@ export default function Home() {
       </Head>
       <div className={styles.container}>
 
-      <div id="banner" className={styles.banner}>
-        <button onClick={(e)=>buttonClick(GET_COMPLETION)} className={styles.buttonBox}>
-          <FaCodiepie/>
-          <div>Get Completion</div>
-        </button>
-        <button onClick={(e)=>buttonClick(ASK_QUESTION)} className={styles.buttonBox}>
-            <FaQuestionCircle/>
-            <div >Ask Question</div>
-        </button>
-        <button onClick={(e)=>buttonClick(PERFORM_SEARCH)} className={styles.buttonBox}>
-            <FaSearch/>
-          <div>Perform Search</div>
-        </button>
-        <button onClick={(e)=>buttonClick(CREATE_CLASSIFICATION)} className={styles.buttonBox}>
-          <FaList/>
-          <div>Classification</div>
-        </button>
-        <button onClick={(e)=>buttonClick(CREATE_EDIT)} className={styles.buttonBox}>
-          <FaEdit/>
-          <div>Create Edit</div>
-        </button>
-        <button disabled className={styles.buttonBox}>
-          <BsCodeSlash/>
-          <div>next</div>
-        </button>
-      </div>
+        <div id="banner" className={styles.banner}>
 
-      <main className={styles.main}>
-        {switchModule()}
-      </main>
+          <button 
+            onClick={(e)=>buttonClick(GET_COMPLETION)} 
+            className={styles.buttonBox}
+            style={{backgroundColor: getActiveButtonStyle(currentForm, GET_COMPLETION)}}>
+              <FaCodiepie/>
+              <div>Get Completion</div>
+          </button>
+
+          <button 
+            onClick={(e)=>buttonClick(ASK_QUESTION)} 
+            className={styles.buttonBox}
+            style={{backgroundColor: getActiveButtonStyle(currentForm, ASK_QUESTION)}}>
+              <FaQuestionCircle/>
+              <div >Ask Question</div>
+          </button>
+
+          <button 
+            onClick={(e)=>buttonClick(PERFORM_SEARCH)} 
+            className={styles.buttonBox}
+            style={{backgroundColor: getActiveButtonStyle(currentForm, PERFORM_SEARCH)}}>
+              <FaSearch/>
+              <div>Perform Search</div>
+          </button>
+
+          <button 
+            onClick={(e)=>buttonClick(CREATE_CLASSIFICATION)} 
+            className={styles.buttonBox}
+            style={{backgroundColor: getActiveButtonStyle(currentForm, CREATE_CLASSIFICATION)}}>
+              <FaList/>
+              <div>Classification</div>
+          </button>
+
+          <button 
+            onClick={(e)=>buttonClick(CREATE_EDIT)} 
+            className={styles.buttonBox}
+            style={{backgroundColor: getActiveButtonStyle(currentForm, CREATE_EDIT)}}>
+              <FaEdit/>
+              <div>Create Edit</div>
+          </button>
+          <button disabled className={styles.buttonBox}>
+            <BsCodeSlash/>
+            <div>next</div>
+          </button>
+        </div>
+
+        <main className={styles.main}>
+          {switchModule()}
+        </main>
       </div>
     </div>
   );
