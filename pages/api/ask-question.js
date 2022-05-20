@@ -15,7 +15,7 @@ const AskQuestion = ({url, engineList}) =>{
 
   // parameters in request body              
   const [question, setQuestion]             = useState(getFromStorageOrDefault("aq-question"        , ""));
-  const [documents, setDocuments]           = useState();
+  const [documents, setDocuments]           = useState(getFromStorageOrDefault("aq-documents", ""));
   const [examples, setExamples]             = useState([]);
   const [exampleContext, setExampleContext] = useState(getFromStorageOrDefault("aq-example-context" ,""));
   const [searchModel, setSearchModel]       = useState(getFromStorageOrDefault("aq-search-model"    ,"curie"));
@@ -53,6 +53,7 @@ async function call () {
   })
   .then((response) => {
     setQuestionResult(response.data.body.answers[0]);
+    localStorage.setItem("aq-documents", documents)
     localStorage.setItem("aq-question", question);
     localStorage.setItem("aq-search-model", searchModel);
     localStorage.setItem("aq-model", model);

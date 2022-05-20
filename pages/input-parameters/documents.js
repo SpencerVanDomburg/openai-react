@@ -17,7 +17,7 @@ const Documents = ({documents, setDocuments}) => {
 
   return(
       <>
-      <label>Documents []</label>
+      <label>Documents</label>
       <div id="parambox" className={styles.parambox}>
         <input
             id="documents"
