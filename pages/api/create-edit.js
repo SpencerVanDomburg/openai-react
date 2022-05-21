@@ -6,18 +6,18 @@ import Instruction from "../input-parameters/instruction";
 import Engine from "../input-parameters/engine";
 import Temperature from "../input-parameters/temperature";
 import TopP from "../input-parameters/top-p";
-import {getFloatFromStorageOrDefault, getFromStorageOrDefault} from '../storageService';
+import {getFloatFromStorageOrDefault, getStringFromStorageOrDefault} from '../storageService';
 
 const CreateEdit = ({url, engineList}) =>{
 
   // parameters in request body
-  const [input, setInput]             = useState(getFromStorageOrDefault(     "ce-input"         , ""));
-  const [instruction, setInstruction] = useState(getFromStorageOrDefault(     "ce-instruction"   , ""));
+  const [input, setInput]             = useState(getStringFromStorageOrDefault(     "ce-input"         , ""));
+  const [instruction, setInstruction] = useState(getStringFromStorageOrDefault(     "ce-instruction"   , ""));
   const [temperature, setTemperature] = useState(getFloatFromStorageOrDefault("ce-temperature"   , 1.0));
   const [topP, setTopP]               = useState(getFloatFromStorageOrDefault("ce-top-p"         , 1.0));
 
  // path variable
- const [engine, setEngine]            = useState(getFromStorageOrDefault("ce-engine"        , "text-davinci-edit-001"));
+ const [engine, setEngine]            = useState(getStringFromStorageOrDefault("ce-engine"        , "text-davinci-edit-001"));
 
   // result of the request
   const [editResult, setEditResult] = useState();

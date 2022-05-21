@@ -6,17 +6,17 @@ import Model from "../input-parameters/model";
 import Examples from "../input-parameters/examples";
 import Query from "../input-parameters/query";
 import Labels from "../input-parameters/labels";
-import {getFromStorageOrDefault} from '../storageService';
+import {getStringFromStorageOrDefault} from '../storageService';
 import {getExampleContent} from '../utilService';
 
 const CreateClassification = ({url, engineList}) =>{
 
   // parameters in request body
   const [examples, setExamples]       = useState([]);
-  const [labels, setLabels]           = useState(getFromStorageOrDefault("cc-labels"        , []));
-  const [searchModel, setSearchModel] = useState(getFromStorageOrDefault("cc-search-model"  ,"ada"));
-  const [model, setModel]             = useState(getFromStorageOrDefault("cc-model"         ,"curie"));
-  const [query, setQuery]             = useState(getFromStorageOrDefault("cc-query"         , ""));
+  const [labels, setLabels]           = useState(getStringFromStorageOrDefault("cc-labels"        , []));
+  const [searchModel, setSearchModel] = useState(getStringFromStorageOrDefault("cc-search-model"  ,"ada"));
+  const [model, setModel]             = useState(getStringFromStorageOrDefault("cc-model"         ,"curie"));
+  const [query, setQuery]             = useState(getStringFromStorageOrDefault("cc-query"         , ""));
 
   // result of the request
   const [classificationResult, setClassificationResult] = useState();

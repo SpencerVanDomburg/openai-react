@@ -4,16 +4,16 @@ import axios from "axios";
 import Documents from "../input-parameters/documents";
 import Query from "../input-parameters/query";
 import Engine from "../input-parameters/engine";
-import {getFromStorageOrDefault} from '../storageService';
+import {getStringFromStorageOrDefault} from '../storageService';
 
 const PerformSearch = ({url, engineList}) =>{
 
   // request body params
-  const [documents, setDocuments] = useState(getFromStorageOrDefault("ps-documents", ""));
-  const [query, setQuery]         = useState(getFromStorageOrDefault("ps-query", ""));
+  const [documents, setDocuments] = useState(getStringFromStorageOrDefault("ps-documents", ""));
+  const [query, setQuery]         = useState(getStringFromStorageOrDefault("ps-query", ""));
 
   // path variable
-  const [engine, setEngine] = useState(getFromStorageOrDefault("ps-engine", "curie"));
+  const [engine, setEngine] = useState(getStringFromStorageOrDefault("ps-engine", "curie"));
   
   // the result of the request
   const [searchResult, setSearchResult] = useState([]);

@@ -8,18 +8,18 @@ import SearchModel from "../input-parameters/search-model";
 import Model from "../input-parameters/model";
 import Examples from "../input-parameters/examples";
 import ExampleContext from "../input-parameters/example-context";
-import {getFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
+import {getStringFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
 import { getExampleContent } from "../utilService";
 
 const AskQuestion = ({url, engineList}) =>{
 
   // parameters in request body              
-  const [question, setQuestion]             = useState(getFromStorageOrDefault("aq-question"        , ""));
-  const [documents, setDocuments]           = useState(getFromStorageOrDefault("aq-documents"       , ""));
+  const [question, setQuestion]             = useState(getStringFromStorageOrDefault("aq-question"        , ""));
+  const [documents, setDocuments]           = useState(getStringFromStorageOrDefault("aq-documents"       , ""));
   const [examples, setExamples]             = useState([]);
-  const [exampleContext, setExampleContext] = useState(getFromStorageOrDefault("aq-example-context" ,""));
-  const [searchModel, setSearchModel]       = useState(getFromStorageOrDefault("aq-search-model"    ,"curie"));
-  const [model, setModel]                   = useState(getFromStorageOrDefault("aq-model"           ,"curie"));
+  const [exampleContext, setExampleContext] = useState(getStringFromStorageOrDefault("aq-example-context" ,""));
+  const [searchModel, setSearchModel]       = useState(getStringFromStorageOrDefault("aq-search-model"    ,"curie"));
+  const [model, setModel]                   = useState(getStringFromStorageOrDefault("aq-model"           ,"curie"));
   const [maxTokens, setMaxTokens]           = useState(getIntFromStorageOrDefault("aq-max-tokens", 5));
 
   // result of the request

@@ -8,24 +8,26 @@ import TopP from "../input-parameters/top-p";
 import N from "../input-parameters/n";
 import Stream from "../input-parameters/stream";
 import LogProbs from "../input-parameters/log-probs";
+import Echo from "../input-parameters/echo";
 import Stop from "../input-parameters/stop";
 import Engine from "../input-parameters/engine";
-import {getFloatFromStorageOrDefault, getFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
+import {getFloatFromStorageOrDefault, getStringFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
 
 const GetCompletion = ({url, engineList}) =>{
 
   // parameters of the request body
-  const [prompt, setPrompt]           = useState(getFromStorageOrDefault(     "gc-prompt"       , "can you complete this "));
+  const [prompt, setPrompt]           = useState(getStringFromStorageOrDefault(     "gc-prompt"       , "can you complete this "));
   const [maxTokens, setMaxTokens]     = useState(getIntFromStorageOrDefault(  "gc-max-tokens"   ,5));
   const [temperature, setTemperature] = useState(getFloatFromStorageOrDefault("gc-temperature"  ,1.0));
   const [topP, setTopP]               = useState(getFloatFromStorageOrDefault("gc-top-p"        ,1.0));
   const [n, setN]                     = useState(getIntFromStorageOrDefault(  "gc-n"            ,1));
   const [stream, setStream]           = useState(false);
   const [logProbs, setLogProbs]       = useState(getIntFromStorageOrDefault(  "gc-log-probs"    ,1));
+  const [echo, setEcho]               = useState(false);
   const [stop, setStop]               = useState("\n");
   
   // path variable
-  const [engine, setEngine] = useState(getFromStorageOrDefault("gc-engine","curie"));
+  const [engine, setEngine] = useState(getStringFromStorageOrDefault("gc-engine","curie"));
   
   // the result of the request
   const [completionResult, setCompletionResult] = useState();
@@ -46,6 +48,7 @@ async function call () {
     "n": n,
     "stream": stream,
     "logprobs": logProbs,
+    "echo": echo,
     "stop": stop
   },
   {
@@ -100,6 +103,10 @@ return (
           <LogProbs
             logProbs={logProbs}
             setLogProbs={setLogProbs}
+          />
+          <Echo
+            echo={echo}
+            setEcho={setEcho}
           />
           <Stop
             stop={stop}

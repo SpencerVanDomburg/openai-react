@@ -26,10 +26,6 @@ export default function Home() {
     fetchEngineList();
   },[]);
 
-  useEffect(() =>{
-    console.log('form is now: ' + currentForm);
-  },[currentForm]);
-
   async function fetchEngineList(){
     await axios.get(LOCAL_HOST + `/v1/engines`)
     .then((response) => {
@@ -47,7 +43,6 @@ export default function Home() {
   }
 
   function buttonClick(clickedButton){
-      localStorage.setItem("currentForm", clickedButton);
       setCurrentForm(clickedButton);
   }
 

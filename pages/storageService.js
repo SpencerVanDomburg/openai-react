@@ -1,4 +1,4 @@
-export const getFromStorageOrDefault = (item, defaultValue) => {
+export const getStringFromStorageOrDefault = (item, defaultValue) => {
   let value = defaultValue;
 
   typeof window === 'undefined'
