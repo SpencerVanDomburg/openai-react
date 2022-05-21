@@ -17,7 +17,7 @@ const Labels = ({labels, setLabels}) => {
 
   return(
       <>
-      <label>Labels []</label>
+      <label>Labels</label>
       <div id="parambox" className={styles.parambox}>
         <input
             id="labels"

@@ -10,7 +10,6 @@ import axios from "axios";
 import {FaQuestionCircle, FaSearch, FaEdit, FaList, FaCodiepie} from 'react-icons/fa';
 import {BsCodeSlash} from 'react-icons/bs';
 import { getActiveButtonStyle } from "./utilService";
-import { getFromStorageOrDefault } from "./storageService";
 
 
 export default function Home() {
