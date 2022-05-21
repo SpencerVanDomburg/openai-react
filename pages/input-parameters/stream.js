@@ -26,7 +26,7 @@ const Stream = ({stream, setStream}) => {
           <input
           type="checkbox"
           id="stream"
-          checked="false" // hardcode to false, response is no JSON and is not handled yet
+          checked={false} // hardcode to false, response is no JSON and is not handled yet
           // checked={stream}
           name="stream"
           onChange={(e)=> setStreamCheckbox(e.target.checked)}
