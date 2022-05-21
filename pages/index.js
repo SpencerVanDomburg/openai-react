@@ -13,13 +13,20 @@ import { getActiveButtonStyle } from "./utilService";
 
 
 export default function Home() {
+  // URL for the proxy
   const LOCAL_HOST = "http://localhost:9080";
-  const PERFORM_SEARCH ="perform-search";
-  const ASK_QUESTION = "ask-question";
-  const GET_COMPLETION = "get-completion";
-  const CREATE_EDIT = "create-edit";
+
+  // constants for the different available forms
+  const PERFORM_SEARCH        = "perform-search";
+  const ASK_QUESTION          = "ask-question";
+  const GET_COMPLETION        = "get-completion";
+  const CREATE_EDIT           = "create-edit";
   const CREATE_CLASSIFICATION = "create-classification";
+
+  // currently selected form
   const [currentForm, setCurrentForm] = useState(GET_COMPLETION);
+
+  // engine list from Open AI
   const [engineList, setEngineList] = useState([]);
 
   // error feedback
