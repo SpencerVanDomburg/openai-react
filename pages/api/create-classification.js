@@ -9,7 +9,7 @@ import Labels from "../input-parameters/labels";
 import {getStringFromStorageOrDefault} from '../storageService';
 import {getExampleContent} from '../utilService';
 
-const CreateClassification = ({url, engineList}) =>{
+const CreateClassification = ({url, engineList, setErrorResult}) =>{
 
   // parameters in request body
   const [examples, setExamples]       = useState([]);
@@ -51,7 +51,7 @@ async function call () {
     localStorage.setItem("cc-model", model);
   })
   .catch(error =>{
-    console.log(error);
+    setErrorResult("Error message: " + error.message);
   })
 }
 return (

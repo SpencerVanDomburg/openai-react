@@ -120,6 +120,11 @@
   opacity: 80%;
 }
 
+.main .error {
+  color: red;
+  font-weight: bold;
+}
+
 .main .result {
   font-weight: bold;
   margin:1rem;

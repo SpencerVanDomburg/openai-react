@@ -8,7 +8,7 @@ import Temperature from "../input-parameters/temperature";
 import TopP from "../input-parameters/top-p";
 import {getFloatFromStorageOrDefault, getStringFromStorageOrDefault} from '../storageService';
 
-const CreateEdit = ({url, engineList}) =>{
+const CreateEdit = ({url, engineList, setErrorResult}) =>{
 
   // parameters in request body
   const [input, setInput]             = useState(getStringFromStorageOrDefault(     "ce-input"         , ""));
@@ -47,7 +47,7 @@ async function call () {
     localStorage.setItem("ce-engine", engine);
   })
   .catch(error =>{
-    console.log(error);
+    setErrorResult("Error message: " + error.message);
   })
 }
 return (

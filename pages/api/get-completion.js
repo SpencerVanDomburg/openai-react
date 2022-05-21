@@ -11,19 +11,22 @@ import LogProbs from "../input-parameters/log-probs";
 import Echo from "../input-parameters/echo";
 import Stop from "../input-parameters/stop";
 import Engine from "../input-parameters/engine";
-import {getFloatFromStorageOrDefault, getStringFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
+import {getFloatFromStorageOrDefault, 
+        getStringFromStorageOrDefault, 
+        getIntFromStorageOrDefault,
+        getBooleanFromStorageOrDefault} from '../storageService';
 
-const GetCompletion = ({url, engineList}) =>{
+const GetCompletion = ({url, engineList, setErrorResult}) =>{
 
   // parameters of the request body
-  const [prompt, setPrompt]           = useState(getStringFromStorageOrDefault(     "gc-prompt"       , "can you complete this "));
-  const [maxTokens, setMaxTokens]     = useState(getIntFromStorageOrDefault(  "gc-max-tokens"   ,5));
-  const [temperature, setTemperature] = useState(getFloatFromStorageOrDefault("gc-temperature"  ,1.0));
-  const [topP, setTopP]               = useState(getFloatFromStorageOrDefault("gc-top-p"        ,1.0));
-  const [n, setN]                     = useState(getIntFromStorageOrDefault(  "gc-n"            ,1));
-  const [stream, setStream]           = useState(false);
-  const [logProbs, setLogProbs]       = useState(getIntFromStorageOrDefault(  "gc-log-probs"    ,1));
-  const [echo, setEcho]               = useState(false);
+  const [prompt, setPrompt]           = useState(getStringFromStorageOrDefault( "gc-prompt"       , "can you complete this "));
+  const [maxTokens, setMaxTokens]     = useState(getIntFromStorageOrDefault(    "gc-max-tokens"   ,5));
+  const [temperature, setTemperature] = useState(getFloatFromStorageOrDefault(  "gc-temperature"  ,1.0));
+  const [topP, setTopP]               = useState(getFloatFromStorageOrDefault(  "gc-top-p"        ,1.0));
+  const [n, setN]                     = useState(getIntFromStorageOrDefault(    "gc-n"            ,1));
+  const [stream, setStream]           = useState(getBooleanFromStorageOrDefault("gc-stream"       ,false));
+  const [logProbs, setLogProbs]       = useState(getIntFromStorageOrDefault(    "gc-log-probs"    ,1));
+  const [echo, setEcho]               = useState(getBooleanFromStorageOrDefault("gc-echo"         ,false));
   const [stop, setStop]               = useState("\n");
   
   // path variable
@@ -63,11 +66,13 @@ async function call () {
     localStorage.setItem("gc-temperature", temperature);
     localStorage.setItem("gc-top-p", topP);
     localStorage.setItem("gc-n", n);
+    localStorage.setItem("gc-stream", stream);
     localStorage.setItem("gc-log-probs", logProbs);
+    localStorage.setItem("gc-echo", echo);
     localStorage.setItem("gc-engine", engine);
   })
   .catch(error =>{
-    console.log(error);
+    setErrorResult("Error message: " + error.message);
   })
 }
 

@@ -20,22 +20,23 @@ const Echo = ({echo, setEcho}) => {
   }
 
   return (
-      <>
-       <label>Echo</label>
-       <div id="parambox" className={styles.parambox}>
-          <input
-          type="checkbox"
-          id="echo"
-          name="echo"
-          onChange={(e)=> setEchoCheckbox(e.target.checked)}
-          />  
-         <FaInfoCircle
-            role="button"
-            onMouseOver={handleMouseOver}
-            onMouseLeave={handleMouseLeave}
-            size= "25"
-          /> 
-      </div>
+    <>
+      <label>Echo</label>
+      <div id="parambox" className={styles.parambox}>
+         <input
+         type="checkbox"
+         checked={echo}
+         id="echo"
+         name="echo"
+         onChange={(e)=> setEchoCheckbox(e.target.checked)}
+         />  
+        <FaInfoCircle
+           role="button"
+           onMouseOver={handleMouseOver}
+           onMouseLeave={handleMouseLeave}
+           size= "25"
+         /> 
+     </div>
       {showPopup && <Popup content = {
         <>
           <h2>Echo</h2>
@@ -46,8 +47,9 @@ const Echo = ({echo, setEcho}) => {
             Echo back the prompt in addition to the completion.
           </p>
           <p>https://beta.openai.com/docs/api-reference/completions/create#completions/create-echo</p>
-    </>  }/>}
-      </>
+        </>  
+      }/>}
+    </>
   )
 
 

@@ -6,7 +6,7 @@ import Query from "../input-parameters/query";
 import Engine from "../input-parameters/engine";
 import {getStringFromStorageOrDefault} from '../storageService';
 
-const PerformSearch = ({url, engineList}) =>{
+const PerformSearch = ({url, engineList, setErrorResult}) =>{
 
   // request body params
   const [documents, setDocuments] = useState(getStringFromStorageOrDefault("ps-documents", ""));
@@ -49,7 +49,7 @@ const PerformSearch = ({url, engineList}) =>{
       localStorage.setItem("ps-engine", engine);
     })
     .catch(error =>{
-      console.log(error);
+      setErrorResult("Error message: " + error.message);
     })
   }
 

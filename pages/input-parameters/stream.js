@@ -26,6 +26,7 @@ const Stream = ({stream, setStream}) => {
           <input
           type="checkbox"
           id="stream"
+          checked={stream}
           name="stream"
           onChange={(e)=> setStreamCheckbox(e.target.checked)}
           />  

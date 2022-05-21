@@ -22,6 +22,9 @@ export default function Home() {
   const [currentForm, setCurrentForm] = useState(GET_COMPLETION);
   const [engineList, setEngineList] = useState([]);
 
+  // error feedback
+  const [errorResult, setErrorResult] = useState();
+
   useEffect(()=>{
     fetchEngineList();
   },[]);
@@ -52,26 +55,31 @@ export default function Home() {
             return <GetCompletion 
                       url={LOCAL_HOST} 
                       engineList={engineList}
+                      setErrorResult={setErrorResult}
                     />;
           case ASK_QUESTION:
             return <AskQuestion 
                       url={LOCAL_HOST} 
                       engineList={engineList}
+                      setErrorResult={setErrorResult}
                     />;
           case PERFORM_SEARCH:
             return <PerformSearch 
                       url={LOCAL_HOST} 
                       engineList={engineList}
+                      setErrorResult={setErrorResult}
                     />;
           case CREATE_CLASSIFICATION:
             return <CreateClassification 
                       url={LOCAL_HOST} 
                       engineList={engineList}
+                      setErrorResult={setErrorResult}
                     />;
           case CREATE_EDIT:
             return <CreateEdit 
                       url={LOCAL_HOST} 
                       engineList={engineList}
+                      setErrorResult={setErrorResult}
                     />;
           default:
             return <Error/>;
@@ -127,13 +135,16 @@ export default function Home() {
               <div>Create Edit</div>
           </button>
 
-          <button disabled className={styles.buttonBox}>
-            <BsCodeSlash/>
-            <div>next</div>
+          <button 
+            disabled 
+            className={styles.buttonBox}>
+              <BsCodeSlash/>
+              <div>next</div>
           </button>
         </div>
 
         <main className={styles.main}>
+          <div className={styles.error}>{errorResult}</div>
           {switchModule()}
         </main>
       </div>

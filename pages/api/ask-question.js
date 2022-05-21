@@ -11,7 +11,7 @@ import ExampleContext from "../input-parameters/example-context";
 import {getStringFromStorageOrDefault, getIntFromStorageOrDefault} from '../storageService';
 import { getExampleContent } from "../utilService";
 
-const AskQuestion = ({url, engineList}) =>{
+const AskQuestion = ({url, engineList, setErrorResult}) =>{
 
   // parameters in request body              
   const [question, setQuestion]             = useState(getStringFromStorageOrDefault("aq-question"        , ""));
@@ -61,7 +61,7 @@ async function call () {
     localStorage.setItem("aq-max-tokens", maxTokens);
   })
   .catch(error =>{
-    console.log(error);
+    setErrorResult("Error message: " + error.message);
   })
 }
 
