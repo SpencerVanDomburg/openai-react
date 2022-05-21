@@ -43,6 +43,7 @@ const PerformSearch = ({url, engineList, setErrorResult}) =>{
       response.data.body.data.sort(function(a,b){  
         return b.score - a.score;
       });
+      setErrorResult("");
       setSearchResult(response.data.body.data);
       localStorage.setItem("ps-documents",documents);
       localStorage.setItem("ps-query", query);

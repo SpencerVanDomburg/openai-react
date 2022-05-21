@@ -52,6 +52,7 @@ async function call () {
     }
   })
   .then((response) => {
+    setErrorResult("");
     setQuestionResult(response.data.body.answers[0]);
     localStorage.setItem("aq-documents", documents)
     localStorage.setItem("aq-question", question);

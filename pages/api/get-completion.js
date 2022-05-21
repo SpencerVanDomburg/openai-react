@@ -60,6 +60,7 @@ async function call () {
     }
   })
   .then((response) => {
+    setErrorResult("");
     setCompletionResult(response.data.body.choices[0].text);
     localStorage.setItem("gc-prompt", prompt);
     localStorage.setItem("gc-max-tokens", maxTokens);

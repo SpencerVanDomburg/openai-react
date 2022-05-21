@@ -44,6 +44,7 @@ async function call () {
     }
   })
   .then((response) => {
+    setErrorResult("");
     setClassificationResult(response.data.body.label);
     localStorage.setItem("cc-labels", labels);
     localStorage.setItem("cc-query", query);

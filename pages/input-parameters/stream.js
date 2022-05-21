@@ -21,12 +21,13 @@ const Stream = ({stream, setStream}) => {
 
   return (
       <>
-       <label>Stream</label>
+       <label>Stream (hardcoded to false for now)</label>
        <div id="parambox" className={styles.parambox}>
           <input
           type="checkbox"
           id="stream"
-          checked={stream}
+          checked="false" // hardcode to false, response is no JSON and is not handled yet
+          // checked={stream}
           name="stream"
           onChange={(e)=> setStreamCheckbox(e.target.checked)}
           />  

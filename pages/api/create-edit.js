@@ -39,6 +39,7 @@ async function call () {
     }
   })
   .then((response) => {
+    setErrorResult("");
     setEditResult(response.data.body.choices[0].text);
     localStorage.setItem("ce-input", input);
     localStorage.setItem("ce-instruction", instruction);
