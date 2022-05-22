@@ -99,7 +99,7 @@ export default function Home() {
         <title>OpenAI Quickstart</title>
         <link rel="icon" href="/dog.png" />
       </Head>
-      <div className={styles.container}>
+      <div className={styles.container} id="container">
         <div id="banner" className={styles.banner}>
 
           <button 
