@@ -1,4 +1,4 @@
-# Spencer van Domburg - Open AI project (React JS)
+# Spencer van Domburg - Open AI project (React JS/ Next JS)
 
 I made this project to practice my React skills and made it public so everyone can clone it and use it playing around with the Open AI API.
 At first I cloned the API Quickstart repository from Open AI itself but you'll see that I basically removed everything and started from
