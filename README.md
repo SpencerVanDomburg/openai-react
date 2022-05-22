@@ -8,8 +8,9 @@ The main thing that is different is that there is a Java Springboot backend that
 API key. You can follow below steps to use my project(s). Any feedback is more than welcome! (At the very bottom I left the readme of the
 original project).
 
-Next JS
-I only realized a lot later the project I cloned from Open AI is actually a Next JS project. This explains why I can't use html tags to target css styling and probably why I had difficulties accessing the window object for the localstorage.
+## Next JS
+
+I only realized a lot later the project I cloned from Open AI is actually a Next JS project. This explains why I can't use html tags to target css styling and probably why I had difficulties accessing the window object for the localstorage. Also why you have to run the app with 'npm run dev'.
 
 ## Setup
 
@@ -37,6 +38,7 @@ I only realized a lot later the project I cloned from Open AI is actually a Next
 3. The hovering over the info icon is still a bit buggy in my experience, I hope to improve this as well
 
 ## Screenshots
+
 (Text in the gray area is the response from Open AI and every button represents 1 endpoint, the "next" is a placeholder that doesn't do anything at the moment, only 5 calls are possible now).
 
 Get Completion:
@@ -53,7 +55,6 @@ Classification:
 
 Create Edit:
 ![Create Edit](https://user-images.githubusercontent.com/61516960/169072670-79daa55e-ac8b-4e1b-894b-a360a9c133f9.png)
-
 
 # OpenAI API Quickstart - Node.js example app
 
