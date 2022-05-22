@@ -8,6 +8,9 @@ The main thing that is different is that there is a Java Springboot backend that
 API key. You can follow below steps to use my project(s). Any feedback is more than welcome! (At the very bottom I left the readme of the
 original project).
 
+#Next JS
+I only realized a lot later the project I cloned from Open AI is actually a Next JS project. This explains why I can't use html tags to target css styling and probably why I had difficulties accessing the window object for the localstorage.
+
 ## Setup
 
 0. Requirements: Java, Node JS, Open AI account
