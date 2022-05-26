@@ -26,6 +26,7 @@ const [exampleContent, setExampleContent] = useState([]);
 
 const handleSubmit = (e) => {
   e.preventDefault();
+  setErrorResult("");
   call();
 }
 
@@ -44,7 +45,6 @@ async function call () {
     }
   })
   .then((response) => {
-    setErrorResult("");
     setClassificationResult(response.data.body.label);
     localStorage.setItem("cc-labels", labels);
     localStorage.setItem("cc-query", query);
