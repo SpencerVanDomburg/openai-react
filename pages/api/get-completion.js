@@ -73,7 +73,10 @@ async function call () {
     localStorage.setItem("gc-engine", engine);
   })
   .catch(error =>{
-    setErrorResult("Error message: " + error.message);
+    error.response.data 
+    ? setErrorResult("Error message: " + error.response.data 
+                        + ", status: " + error.response.status) 
+    : setErrorResult("Error message: " + error.message);
   })
 }
 

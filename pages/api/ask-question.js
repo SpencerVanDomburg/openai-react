@@ -62,7 +62,10 @@ async function call () {
     localStorage.setItem("aq-max-tokens", maxTokens);
   })
   .catch(error =>{
-    setErrorResult("Error message: " + error.message);
+    error.response.data 
+    ? setErrorResult("Error message: " + error.response.data 
+                        + ", status: " + error.response.status) 
+    : setErrorResult("Error message: " + error.message);
   })
 }
 

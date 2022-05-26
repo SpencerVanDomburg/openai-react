@@ -52,7 +52,10 @@ async function call () {
     localStorage.setItem("cc-model", model);
   })
   .catch(error =>{
-    setErrorResult("Error message: " + error.message);
+    error.response.data 
+    ? setErrorResult("Error message: " + error.response.data 
+                        + ", status: " + error.response.status) 
+    : setErrorResult("Error message: " + error.message);
   })
 }
 return (
