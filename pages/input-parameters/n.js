@@ -2,6 +2,7 @@ import {FaInfoCircle} from 'react-icons/fa'
 import { useState } from "react";
 import styles from "../index.module.css";
 import Popup from "../Popup";
+import { preventNegativeNumber } from '../utilService';
 
 const N = ({n, setN}) => {
 
@@ -24,8 +25,9 @@ return (
             pattern="[0-9]*" 
             inputMode="numeric"
             placeholder="Enter n as number"
+            min="0"
             value={n}
-            onChange={(e) => setN(e.target.value)}
+            onChange={(e) => setN(preventNegativeNumber(e.target.value))}
       />
           <FaInfoCircle
             role="button"

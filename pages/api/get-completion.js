@@ -74,8 +74,7 @@ async function call () {
   })
   .catch(error =>{
     error.response.data 
-    ? setErrorResult("Error message: " + error.response.data 
-                        + ", status: " + error.response.status) 
+    ? setErrorResult("Error message: " + error.response.data) 
     : setErrorResult("Error message: " + error.message);
   })
 }

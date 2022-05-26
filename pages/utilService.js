@@ -18,3 +18,10 @@ export const getActiveButtonStyle = (currentForm, form) => {
   }
   return '#10a37f';
 }
+
+export const preventNegativeNumber = (value) => {
+  if (value < 0) {
+    return 0;
+  }
+  return value;
+}

@@ -2,6 +2,7 @@ import {FaInfoCircle} from 'react-icons/fa'
 import { useState } from "react";
 import styles from "../index.module.css";
 import Popup from "../Popup";
+import { preventNegativeNumber } from '../utilService';
 
 const MaxTokens = ({maxTokens, setMaxTokens}) => {
 
@@ -21,11 +22,12 @@ const MaxTokens = ({maxTokens, setMaxTokens}) => {
       <div id="parambox" className={styles.parambox}>
         <input
             type="number" 
-            pattern="[0-9]*" 
+            pattern="[0-9]*"
+            min="0" 
             inputMode='numeric'
             placeholder="Enter max number of tokens"
             value={maxTokens}
-            onChange={(e) => setMaxTokens(e.target.value)}
+            onChange={(e) => setMaxTokens(preventNegativeNumber(e.target.value))}
         />
         <FaInfoCircle
             role="button"

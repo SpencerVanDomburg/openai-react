@@ -2,6 +2,7 @@ import {FaInfoCircle} from 'react-icons/fa'
 import { useState } from "react";
 import styles from "../index.module.css";
 import Popup from "../Popup";
+import { preventNegativeNumber } from '../utilService';
 
 const LogProbs = ({logProbs, setLogProbs}) => {
 
@@ -22,11 +23,12 @@ const LogProbs = ({logProbs, setLogProbs}) => {
           <input
             id="number"
             type="number"
+            min="0"
             pattern="[0-9]"
             inputMode="numeric"
             placeholder="Enter logProbs as number"
             value={logProbs}
-            onChange={(e) => setLogProbs(e.target.value)}
+            onChange={(e) => setLogProbs(preventNegativeNumber(e.target.value))}
           />
           <FaInfoCircle
             role="button"
