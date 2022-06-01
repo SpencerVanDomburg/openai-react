@@ -142,12 +142,12 @@ export default function Home() {
               <div>Create Edit</div>
           </button>
 
-          <button 
+          {/* <button 
             disabled 
             className={styles.buttonBox}>
               <BsCodeSlash/>
               <div>next</div>
-          </button>
+          </button> */}
         </div>
 
         <main className={styles.main}>
