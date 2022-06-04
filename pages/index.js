@@ -8,7 +8,6 @@ import CreateEdit from "./api/create-edit";
 import styles from "./index.module.css";
 import axios from "axios";
 import {FaQuestionCircle, FaSearch, FaEdit, FaList, FaCodiepie} from 'react-icons/fa';
-import {BsCodeSlash} from 'react-icons/bs';
 import { getActiveButtonStyle } from "./utilService";
 
 
@@ -40,7 +39,7 @@ export default function Home() {
     await axios.get(LOCAL_HOST + `/v1/engines`)
     .then((response) => {
       const result = response.data.body.data.map(getEngineId);
-      setEngineList(result);
+      setEngineList(result.sort());
     })
     .catch(error =>{
       console.log(error);
@@ -141,13 +140,6 @@ export default function Home() {
               <FaEdit/>
               <div>Create Edit</div>
           </button>
-
-          {/* <button 
-            disabled 
-            className={styles.buttonBox}>
-              <BsCodeSlash/>
-              <div>next</div>
-          </button> */}
         </div>
 
         <main className={styles.main}>
